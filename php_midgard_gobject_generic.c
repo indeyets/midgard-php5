@@ -627,7 +627,13 @@ HashTable *php_midgard_zendobject_get_properties(zval *zobject TSRMLS_DC)
 
 		GValue pval = {0, };
 		g_value_init(&pval, props[i]->value_type);
+
 		g_object_get_property(gobject, (gchar*)props[i]->name, &pval);
+		g_value_unset(&pval);
+		g_object_get_property(gobject, (gchar*)props[i]->name, &pval);
+		g_value_unset(&pval);
+		g_object_get_property(gobject, (gchar*)props[i]->name, &pval);
+		g_value_unset(&pval);
 
 		zval *tmp;
 
